@@ -1,0 +1,30 @@
+server:
+  port: ${SERVICE_PORT:9999}
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: transcoding-service
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+logging:
+  file:
+    path: /logs
+    name: transcoding.log
+
+feign:
+  client:
+    config:
+      transcoding:
+        loggerLevel: FULL
+
+properties:
+  basic:
+    username: ${BASIC_AUTH_USERNAME:user}
+    password: ${BASIC_AUTH_PASSWORD:password}
+  transcoding:
+    rootDirPath: ${TRANSCODING_PATH:/transcoding}
